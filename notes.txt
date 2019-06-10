@@ -1,0 +1,38 @@
+Ideas:
+	- nyt archive api (large ~20mg json calls)
+	- youtube api transcripts of videos
+	- everyday query as many days as you can and store it in a mongodb (max 5000 results)
+	- front-end graph.js pulling from mongo
+	- maybe look into key scraping
+
+TODO
+	- check exception to make sure there are just no articles with the keyword
+
+Tests Needed:
+	- articles
+		+ formatDate
+	- sentiment
+		+ getAverageSentiment
+	- serverless
+		- lastDateQueried
+	- Enviroment variables
+
+
+API KEYS:
+'688e2fe0dd964d2bbe751720827919d7' X
+'2bb6dd054d97409a88e94fdb4023eccc' X
+'53041255c46a47b0857bedc74e0a1459' X
+'2ade1cfe4af4423a8668f5f0fae20a9b' X
+'a5727771d0cb40b1b3ffece70f5b1386' X
+'2b735870147f4395ac170b2d1b452d26' X
+'b320efe27d21499aa811312fa6a29db9' X
+'2d56f0b8b5cc4a4d8f0958de9676331b'
+'2c883b07fcb34ae990e85d356ae9b625'
+'2428909d2dec470bb774b85a41541880'
+'2f08d7c4c0fe4e4895639369a35fe28b'
+'7d227691e58f4e15898d3e240b663d3e'
+'30a8d8c1d3164e3f9749ced588054e75'
+'de41366a20be443c90dd3fb5ec9d8d34' X
+'303cf0e20e544e8b97b4991db8060d57'
+'12d4fd98c8004ca1a1a4091a04589167'
+'676e6409fdb84038b6c3d0420aae900e'

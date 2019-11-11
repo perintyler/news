@@ -11,6 +11,8 @@ db = client[key_word]
 collection = db[source]
 failed_urls = db['unscrapable_urls']
 
+article_db = client['text']
+
 def storeSentiment(sentiment):
     collection.insert_one(sentiment)
 
@@ -37,6 +39,14 @@ def storeUnscrapableArticle(url, source):
 def getSentimentTimeline(source):
     source_collection = db[source]
     return source_collection.find()
+
+
+def store_articles(articles, source, date):
+    # create a list of documents storing article contents and date
+    format_document = lambda article: {'contents': article, 'date': date}
+    documents = map(format_document, articles)
+    # store the documents in the source's article collection
+    article_db[source].insert_many(list(documents))
 
 if __name__ == '__main__':
     storeSentiment({'test_key': 'test_value'})

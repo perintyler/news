@@ -12,15 +12,18 @@ def getSentiment(source):
     results = {}
     timeline = list(db.getSentimentTimeline(source))
     for snapshot in timeline:
-        date = snapshot['date'].strftime('%Y:%m:%d')
-        polarity = snapshot['polarity']
-        subjectivity = snapshot['subjectivity']
-        volume = snapshot['num_articles']
-        results[date] = {
-            'polarity': polarity,
-            'subjectivity': subjectivity,
-            'volume': volume
-        }
+        if 'date' in snapshot:
+            date = snapshot['date'].strftime('%Y:%m:%d')
+            polarity = snapshot['polarity']
+            subjectivity = snapshot['subjectivity']
+            volume = snapshot['num_articles']
+            results[date] = {
+                'polarity': polarity,
+                'subjectivity': subjectivity,
+                'volume': volume
+            }
+        else:
+            print(snapshot)
     return jsonify(source=source, data=results)
 
 

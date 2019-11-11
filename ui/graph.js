@@ -1,5 +1,7 @@
 var lastCharts = {};
 
+var keyword = 'Trump'
+
 let source_ids = [
     'cnn',
     'fox-news',
@@ -77,7 +79,7 @@ var plotChart = (timelines, datatype) => {
 
 for(var i=0;i<source_ids.length;i++) {
     timelines = [];
-    fetchData('trump', source_ids[i], timeline => {
+    fetchData(keyword, source_ids[i], timeline => {
         timelines.push(timeline);
         if(timelines.length == source_ids.length) {
             plotChart(timelines, 'subjectivity');

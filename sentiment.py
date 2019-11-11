@@ -4,6 +4,7 @@ import datetime
 from functools import reduce
 from articles import getArticles
 
+
 # uses NLTK to get the average sentiment (polarity and subjectivity) of the given articles
 def getAverageSentiment(articles):
     sentiments = list(map(lambda article: TextBlob(article).sentiment, articles))

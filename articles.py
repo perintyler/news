@@ -1,8 +1,32 @@
 import settings as env # loads api keys
 from newsapi import NewsApiClient # queries articles
 import newspaper # scrapes article contents
-from datetime import timedelta
+from datetime import datetime, timedelta
 import sys
+import db
+
+# The source ids for The News Api (https://newsapi.org/docs/endpoints/sources)
+source_ids = [
+    'cnn',
+    'fox-news'
+    'abc-news',
+    'cbc-news',
+    'the-hill',
+    'the-new-york-times',
+    'politico',
+    'associated-press',
+    'msnbc',
+    'the-washington-post',
+    'reuters',
+    'breitbart-news'
+    # 'the-huffington-post',
+    # 'vice-news',
+    # 'daily-mail',
+    # 'national-review',
+    # 'new-york-magazine',
+    # 'bbc-news',
+]
+
 # Set up the news querying client (https://newsapi.org/docs)
 client = NewsApiClient(api_key = env.NEWS_API_KEY)
 
@@ -67,3 +91,16 @@ def getArticles(keyword, source, date):
     print(f'Got {len(articles)} articles from {source} on {date}')
 
     return articles
+
+
+if __name__ == '__main__':
+    keyword = 'trump'
+
+    end_date = datetime.now()
+    date = end_date - timedelta(days=10) # start date
+    while date < end_date:
+        for source in source_ids:
+            articles = getArticles(keyword, source, date)
+            if len(articles) != 0:
+                db.store_articles(articles, source, date)
+        date += timedelta(days=1)
